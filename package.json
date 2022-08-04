@@ -1,14 +1,24 @@
 {
-  "name": "js-tracker",
+  "name": "sjs-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "browser": "./dist/index.js",
   "scripts": {
-    "build": "rm -rf ./dist && rollup -c"
+    "build": "rm -rf ./dist && rollup -c",
+    "build:w": "rm -rf ./dist && rollup -c --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "练习",
+    "埋点",
+    "tracker"
+  ],
   "author": "",
   "license": "ISC",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "rollup": "^2.77.2",
     "rollup-plugin-dts": "^4.2.2",

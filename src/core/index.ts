@@ -97,7 +97,38 @@ export default class JsTracker {
       this.targetKeyReport();
     }
 
+    if(this.data.jsError){
+      this.jsError()
+    }
+  }
+
+  private jsError(){
+    this.ErrorEvents()
+    this.promiseReject()
+  }
+  private ErrorEvents() {
+    window.addEventListener("error", (e) => {
+      this.reportTracker({
+        event: "error",
+        targetKey: "message",
+        message: e.message,
+      });
+    });
+
+
     
+  }
+
+  private promiseReject(){
+    window.addEventListener("unhandledrejection", (e) => {
+      e.promise.catch(e=>{
+        this.reportTracker({
+          event: "unhandledrejection",
+          targetKey: "promiseReject",
+          message: e,
+        });
+      })
+    });
   }
 
   private reportTracker<T>(data: T) {
